@@ -11,3 +11,9 @@
         where MONTH(purchase_time) = '10' AND YEAR(purchase_time) = '2020'
         group by store_id) > 5
    group by store_id
+
+3. select store_id, min(timediff(refund_time, purchase_time)) as shortest_interval
+case when refund_time is NULL then shortest_interval is NULL
+     else shortest_interval = min(timediff(refund_time, purchase_time))
+END;
+group by store_id 
