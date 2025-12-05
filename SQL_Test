@@ -1,0 +1,13 @@
+1. select MONTH(purchase_time) as month, count(purchase_time) as number of purchase #display of month and count of purchase
+ from transactions 
+ where refund_item is NULL  
+ group by MONTH(purchase_time)
+
+2. select count(store_id)
+   from transactions
+   where (
+	select count(purchase_time) 
+        from transactions 
+        where MONTH(purchase_time) = '10' AND YEAR(purchase_time) = '2020'
+        group by store_id) > 5
+   group by store_id
