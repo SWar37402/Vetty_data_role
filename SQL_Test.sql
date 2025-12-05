@@ -20,5 +20,14 @@ group by store_id
 
 4. select distinct(store_id), gross_transaction_value as first_gross_transaction_value
 from transactions
-group by store_id
-limit 1
+group by min(purchase_time)
+
+5. with table1 as (           #cte new table
+   select distinct(buyer_id) as buyer_id, item_name
+   from transactions t inner join items i
+   on t.item_id = i.item_id
+   group by min(purchase_time) 
+   )
+   select item_name, count(item_name) from table1
+   group by item_name 
+   order by count(item_name) desc
