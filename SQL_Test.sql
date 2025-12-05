@@ -44,3 +44,8 @@ group by min(purchase_time)
 from transactions 
 )
 select * from table2 where buyer_purchase_no = 2;
+
+8. #using cte named table2 of question number 7
+   select buyer_id, transaction_time,
+   from table2
+   where buyer_purchase_no = 2;
