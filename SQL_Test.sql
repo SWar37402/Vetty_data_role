@@ -17,3 +17,8 @@ case when refund_time is NULL then shortest_interval is NULL
      else shortest_interval = min(timediff(refund_time, purchase_time))
 END;
 group by store_id 
+
+4. select distinct(store_id), gross_transaction_value as first_gross_transaction_value
+from transactions
+group by store_id
+limit 1
