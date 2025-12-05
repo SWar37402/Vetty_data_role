@@ -39,3 +39,8 @@ group by min(purchase_time)
     else refund_possible = FALSE
     END;
 
+7. with table2 as (
+	select buyer_id, ROW_NUMBER() OVER (partition by order by order_by_buyer_id )  as buyer_purchase_no, purchase_time, return_time, store_id, item_id, gross_transaction_value 
+from transactions 
+)
+select * from table2 where buyer_purchase_no = 2;
