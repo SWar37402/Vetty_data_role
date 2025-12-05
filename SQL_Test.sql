@@ -31,3 +31,11 @@ group by min(purchase_time)
    select item_name, count(item_name) from table1
    group by item_name 
    order by count(item_name) desc
+
+6. alter_table transactions 
+   add refund_possible BOOLEAN
+   case when refund_time is NULL then refund_possible = FALSE
+        when timediff(refund_time, purchase_time) <= 72:00:00 then refund_possible = TRUE
+    else refund_possible = FALSE
+    END;
+
